@@ -13,9 +13,9 @@
     <item android:title="NETWORK">
         <menu>
             <item
-                android:id="@+id/action_rate"
+                android:id="@+id/action_contribution"
                 android:icon="@drawable/ic_rate"
-                android:title="@string/nav_rate"/>
+                android:title="@string/nav_contribution"/>
             <item
                 android:id="@+id/action_share"
                 android:icon="@drawable/ic_share"

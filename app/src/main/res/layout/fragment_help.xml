@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_help_speak"
+        android:layout_marginTop="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_volume_up_black"/>
+
+    <TextView
+        android:id="@+id/tv_help_speak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/help_speak"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/img_help_save"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/img_help_speak"
+        android:layout_marginTop="26dp"
+        android:src="@drawable/ic_star_black_fill" />
+
+    <TextView
+        android:id="@+id/tv_help_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_help_speak"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="31dp"
+        android:text="@string/help_saveword"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/img_help_save"
+        android:layout_marginTop="26dp"
+        android:src="@drawable/ic_delete" />
+
+    <TextView
+        android:id="@+id/tv_help_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_help_speak"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="102dp"
+        android:text="@string/help_bin"
+        android:textSize="20dp" />
+
+</RelativeLayout>

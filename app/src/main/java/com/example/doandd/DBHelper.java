@@ -111,7 +111,7 @@ public class DBHelper  extends SQLiteOpenHelper {
     public Words getWords(String key, int dicType)
     {
         String tableName = getTableName(dicType);
-        String q ="select * from " + tableName+ " where upper([key]) = upper(?)";
+        String q ="select * from " + tableName+ " where upper([key]) = upper(?);";
         Cursor result = mDB.rawQuery(q,new String [] {key});
 
         Words word = new Words();
@@ -194,7 +194,7 @@ public class DBHelper  extends SQLiteOpenHelper {
 
     public boolean isWordMark(Words word) {
 
-        String q ="select * from saveword where upper([key]) = upper(['']) and [html] = ? and [value] = ? and [pronounce] = ? ";
+        String q ="select * from saveword where upper([key]) = upper(?) and [html] = ? and [value] = ? and [pronounce] = ? ";
         Cursor result = mDB.rawQuery(q,new String[] {word.key,word.html,word.value,word.pronounce}); //nul
 
         return result.getCount() >0;
@@ -202,8 +202,8 @@ public class DBHelper  extends SQLiteOpenHelper {
     }
 
     public Words getWordFromSaveWords(String key){
-        String q ="select * from saveword where upper([key]) = upper(?) ";
-        Cursor result = mDB.rawQuery(q,new String[] {key});
+        String q ="select * from saveword where upper([key]) = upper(?) ;";
+        Cursor result = mDB.rawQuery(q,new String[]{key});
         Words word = null;
         while(result.moveToNext())
         {

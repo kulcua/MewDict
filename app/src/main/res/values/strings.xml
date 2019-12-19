@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DoAnDD</string>
+    <string name="app_name">MewDict</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
@@ -9,7 +9,7 @@
     <string name="nav_save">Your words</string>
     <string name="nav_setting">Setting</string>
     <string name="nav_about_us">About Us</string>
-    <string name="nav_rate">Rate</string>
+    <string name="nav_contribution">Contribution</string>
     <string name="nav_share">Share</string>
     <string name="nav_help">Help</string>
 
@@ -25,6 +25,22 @@
 
     <string name="action_clear">CLEAR</string>
     <string name="mewdict">MEWDICT</string>
+
+    <string name="help_speak">Click this image to check pronunciation</string>
+    <string name="help_saveword">Click this image to save your word </string>
+    <string name="help_bin">Click this image to remove your saving word</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">OK</string>
+    <!-- info-->
+    <string name="nhabui">Bùi Xuân Nhã</string>
+    <string name="mssv_nha">MSSV: 17520834</string>
+    <string name="gmail_nha">Gmail: 17520834@gm.uit.edu.vn</string>
+
+    <string name="nguyenphuong">Nguyễn Thị Kim Phương</string>
+    <string name="mssv_phuong">MSSV: 17520927</string>
+    <string name="gmail_phuong">Gmail: 17520927@gm.uit.edu.vn</string>
 
 
 </resources>

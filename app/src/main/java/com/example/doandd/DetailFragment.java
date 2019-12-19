@@ -1,20 +1,28 @@
 package com.example.doandd;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.TooManyListenersException;
 
 
 public class DetailFragment extends Fragment {
@@ -25,6 +33,8 @@ public class DetailFragment extends Fragment {
     private WebView tvWordTranslate;
     private DBHelper mDBHelper;
     private int mDicType;
+
+    TextToSpeech mTTS;
 
     public DetailFragment() {
 
@@ -53,10 +63,12 @@ public class DetailFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         tvWord = (TextView) view.findViewById(R.id.tvWord);
         tvWordTranslate = (WebView) view.findViewById(R.id.tvWordTranslate);
         btnBookmark = (ImageButton) view.findViewById(R.id.btnBookmark);
         btnVolume = (ImageButton) view.findViewById(R.id.btnVolume);
+
 
         final Words words = mDBHelper.getWords(value,mDicType);
         tvWord.setText(words.key);
@@ -88,6 +100,14 @@ public class DetailFragment extends Fragment {
             }
         });
 
+//        btnVolume.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String toSpeak = words.key;
+//                mTTS.speak(toSpeak,TextToSpeech.QUEUE_FLUSH,null,null);
+//
+//            }
+//    });
     }
 
     @Override
@@ -100,4 +120,24 @@ public class DetailFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+
+    //@Override
+//    public void onPause() {
+//        if(mTTS!=null||mTTS.isSpeaking())
+//        {
+//            mTTS.stop();
+//        }
+//        super.onPause();
+//    }
+
+  @Override
+   public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
 }

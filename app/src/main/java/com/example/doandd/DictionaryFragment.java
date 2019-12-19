@@ -25,7 +25,7 @@ public class DictionaryFragment extends Fragment {
     ArrayAdapter<String> adapter;
     ListView dicList;
 
-    private  ArrayList<String> mSource = new ArrayList<String> ();
+    private  ArrayList<String> mSource = new ArrayList<String>();
 
     public DictionaryFragment() {
         // Required empty public constructor

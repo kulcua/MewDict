@@ -5,7 +5,7 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title=""
-        android:icon="@drawable/ic_more"
+        android:icon="@drawable/uk64"
         android:iconTint="#ffffff"
         app:showAsAction="always">
         <menu>
