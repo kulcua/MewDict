@@ -65,15 +65,15 @@ public class YourWordsFragment extends Fragment {
             }
         });
 
-////        adapter.setOnItemDeleteClick(new ListItemListener() {
-////            @Override
-////            public void onItemClick(int position) {
-////                String key = (String) adapter.getItem(position);
-////                mDBHelper.delSavingWords(key);
-////                adapter.removeItem(position);
-////                adapter.notifyDataSetChanged();
-//            }
-//        });
+        adapter.setOnItemDeleteClick(new ListItemListener() {
+            @Override
+            public void onItemClick(int position) {
+                String key = (String) adapter.getItem(position);
+                mDBHelper.delSavingWords(key);
+                adapter.removeItem(position);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -93,10 +93,6 @@ public class YourWordsFragment extends Fragment {
 
 
 
-    //@Override
-//    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_clear,menu);
-//    }
 
 
     @Override

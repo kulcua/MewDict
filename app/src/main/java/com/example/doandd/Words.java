@@ -5,14 +5,14 @@ public class Words {
     public String value = "";
     public String html ="";
     public String pronounce = "";
-    public int id ;
+    public String id = "";
 
     public Words()
     {
 
     }
 
-    public Words(String key, String value, String html, String pronounce, int id)
+    public Words(String key, String value, String html, String pronounce, String id)
     {
         this.key = key;
         this.value = value;

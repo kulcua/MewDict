@@ -116,7 +116,7 @@ public class DBHelper  extends SQLiteOpenHelper {
 
         Words word = new Words();
         while (result.moveToNext()){
-            word.id = result.getColumnIndex(COL_ID);
+            word.id = result.getString(result.getColumnIndex(COL_ID));
             word.key = result.getString(result.getColumnIndex(COL_KEY));
             word.value = result.getString(result.getColumnIndex(COL_VALUE));
             word.html = result.getString(result.getColumnIndex(COL_HTML));
@@ -141,7 +141,7 @@ public class DBHelper  extends SQLiteOpenHelper {
     public void delSavingWords(Words word)
     {
         try {
-            String q = " delete from saveword where upper(["+COL_ID+"]) = upper(?) and ["+COL_KEY+"] = ? and ["+COL_HTML+"] = ? and ["+COL_VALUE+"] = ? and ["+COL_PRONOUNCE+"] = ?;";
+            String q = " delete from saveword where upper(["+COL_KEY+"]) = upper(?) and ["+COL_ID+"] = ? and ["+COL_HTML+"] = ? and ["+COL_VALUE+"] = ? and ["+COL_PRONOUNCE+"] = ?;";
             mDB.execSQL(q,new Object[]{word.id,word.key,word.html,word.value,word.pronounce});
         }
         catch (SQLException ex) {
@@ -151,17 +151,17 @@ public class DBHelper  extends SQLiteOpenHelper {
     }
 
 
-//    public void delSavingWords(String key)
-//    {
-//        try {
-//            String q = " delete from saveword where upper(["+COL_KEY+"]) = upper(?);";
-//            mDB.execSQL(q,new Object[]{key});
-//        }
-//        catch (SQLException ex) {
-//
-//        }
-//
-//    }
+    public void delSavingWords(String key)
+    {
+        try {
+            String q = " delete from saveword where upper(["+COL_KEY+"]) = upper(?);";
+            mDB.execSQL(q,new Object[]{key});
+        }
+        catch (SQLException ex) {
+
+        }
+
+    }
 
 
     public String getTableName(int dicType)
@@ -194,8 +194,8 @@ public class DBHelper  extends SQLiteOpenHelper {
 
     public boolean isWordMark(Words word) {
 
-        String q ="select * from saveword where upper([key]) = upper(?) and [html] = ? and [value] = ? and [pronounce] = ? ";
-        Cursor result = mDB.rawQuery(q,new String[] {word.key,word.html,word.value,word.pronounce}); //nul
+        String q ="select * from saveword where upper([id]) = upper(?) and [key] = ?  and [html] = ? and [value] = ? and [pronounce] = ? ";
+        Cursor result = mDB.rawQuery(q,new String[] {word.id,word.key,word.html,word.value,word.pronounce}); //nul
 
         return result.getCount() >0;
 
@@ -208,7 +208,7 @@ public class DBHelper  extends SQLiteOpenHelper {
         while(result.moveToNext())
         {
             word = new Words();
-            word.id = result.getInt(result.getColumnIndex(COL_ID));
+            word.id = result.getString(result.getColumnIndex(COL_ID));
             word.key = result.getString(result.getColumnIndex(COL_KEY));
             word.value = result.getString(result.getColumnIndex(COL_VALUE));
             word.html = result.getString(result.getColumnIndex(COL_HTML));
@@ -220,7 +220,7 @@ public class DBHelper  extends SQLiteOpenHelper {
 
     public void clearSavingWords() {
         try {
-            String q = "delete from saveword ;";
+            String q = "delete from saveword ";
             mDB.execSQL(q);
         }
         catch (SQLException ex) {
