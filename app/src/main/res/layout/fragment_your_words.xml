@@ -4,6 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:indeterminate="true"/>-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_width="93dp"-->
+<!--        android:layout_height="437dp"-->
+<!--        android:layout_gravity="center_vertical|center_horizontal"-->
+<!--        android:gravity="center_vertical|center_horizontal"-->
+<!--        android:visibility="visible" />-->
+
+
+
     <ListView
         android:id="@+id/yourwordsList"
         android:layout_width="match_parent"

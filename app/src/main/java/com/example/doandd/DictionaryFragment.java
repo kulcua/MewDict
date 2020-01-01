@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ public class DictionaryFragment extends Fragment {
     private FragmentListener listener;
     ArrayAdapter<String> adapter;
     ListView dicList;
+
 
     private  ArrayList<String> mSource = new ArrayList<String>();
 
@@ -97,4 +99,5 @@ public class DictionaryFragment extends Fragment {
     public void setOnFragmentListener(FragmentListener listener){
         this.listener = listener;
     }
+
 }

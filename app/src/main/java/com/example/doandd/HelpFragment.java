@@ -1,10 +1,13 @@
 package com.example.doandd;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -20,8 +23,6 @@ import android.view.ViewGroup;
  */
 public class HelpFragment extends Fragment {
 
-    MenuItem menuSetting;
-    Toolbar toolbar;
 
     public HelpFragment() {
         // Required empty public constructor
@@ -40,15 +41,13 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        toolbar = view.findViewById(R.id.edit_search);
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        menuSetting.setVisible(false);
-        toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
-        toolbar.setTitle("Help");
-        super.onPrepareOptionsMenu(menu);
-    }
+    //    @Override
+//    public void onResume() {
+//        super.onResume();
+//        ((MainActivity)getActivity()).onPrepareOptionsMenu(menu);
+//    }
 }

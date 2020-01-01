@@ -4,12 +4,15 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
@@ -29,14 +32,18 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
 
     MenuItem menuSetting;
@@ -49,13 +56,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     HelpFragment helpFragment;
     ContributionFragment contributionFragment;
     AboutUsFragment aboutUsFragment;
-
- //   TextToSpeech mTTS;
+//    private TextToSpeech mTTS;
+//    private ImageButton mBtnVol;
+//    private TextView mTvWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -113,19 +122,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
-//        mTTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-//            @Override
-//            public void onInit(int status) {
-//                if(status!=TextToSpeech.ERROR)
-//                    mTTS.setLanguage(Locale.ENGLISH);
-//
-//            }
-//        });
-
-
     }
 
+
+//    private void speak()
+//    {
+//        String text = mTvWord.getText().toString();
+////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            mTTS.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
+////        } else {
+////            mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+////        }
+//    }
 
     @Override
     public void onBackPressed() {
@@ -189,25 +197,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.action_save){
             if(!activeFragment.equals(YourWordsFragment.class.getSimpleName()))
             {
+//                ProgressBar pb = findViewById(R.id.progressBar);
+//                pb.setVisibility(ProgressBar.VISIBLE);
                 goToFragment(yourwordsFragment,false);
             }
         }
         else if(id==R.id.action_help){
-            //String activeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName();
             if(!activeFragment.equals(HelpFragment.class.getSimpleName()))
             {
                 goToFragment(helpFragment,false);
             }
         }
         else if(id==R.id.action_contribution){
-            //String activeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName();
             if(!activeFragment.equals(ContributionFragment.class.getSimpleName()))
             {
                 goToFragment(contributionFragment,false);
             }
         }
         else if(id==R.id.action_about_us){
-            //String activeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName();
             if(!activeFragment.equals(AboutUsFragment.class.getSimpleName()))
             {
                 goToFragment(aboutUsFragment,false);
@@ -225,35 +232,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         if(!isTop)
-            fragmentTransaction.addToBackStack(null);//String.valueOf(dictFragment));
+            fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         String activeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container).getClass().getSimpleName();
-        if(activeFragment.equals(YourWordsFragment.class.getSimpleName()))
+
+         if (activeFragment.equals(YourWordsFragment.class.getSimpleName()))
         {
             menuSetting.setVisible(false);
             toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
             toolbar.setTitle("Your Words");
         }
-////        else if(activeFragment.equals(HelpFragment.class.getSimpleName()))
-////        {
-////
-////        }
-//        else if(activeFragment.equals(ContributionFragment.class.getSimpleName()))
-//        {
-//            menuSetting.setVisible(false);
-//            toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
-//            toolbar.setTitle("Your Contribution");
-//        }
-//        else if(activeFragment.equals(AboutUsFragment.class.getSimpleName()))
-//        {
-//            menuSetting.setVisible(false);
-//            toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
-//            toolbar.setTitle("About Us");
-//        }
+        else if(activeFragment.equals(HelpFragment.class.getSimpleName()))
+        {
+            menuSetting.setVisible(false);
+            toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
+            toolbar.setTitle("Help");
+        }
+        else if(activeFragment.equals(ContributionFragment.class.getSimpleName()))
+        {
+            menuSetting.setVisible(false);
+            toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
+            toolbar.setTitle("Your Contribution");
+        }
+        else if(activeFragment.equals(AboutUsFragment.class.getSimpleName()))
+        {
+            menuSetting.setVisible(false);
+            toolbar.findViewById(R.id.edit_search).setVisibility(View.GONE);
+            toolbar.setTitle("About Us");
+        }
         else
         {
             menuSetting.setVisible(true);
@@ -262,6 +272,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
+
 
 
 }

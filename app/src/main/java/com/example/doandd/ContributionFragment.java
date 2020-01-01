@@ -38,11 +38,13 @@ public class ContributionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_contribution, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         btok = (Button) view.findViewById(R.id.btnOk);
         etContribution = (EditText)view.findViewById((R.id.text_contribution));
         btok.setOnClickListener(new View.OnClickListener() {

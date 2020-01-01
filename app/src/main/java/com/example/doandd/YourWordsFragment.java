@@ -1,7 +1,7 @@
 package com.example.doandd;
 
 import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,12 +14,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
-public class YourWordsFragment extends Fragment {
+public class YourWordsFragment extends Fragment{
 
     private FragmentListener listener;
     private  DBHelper mDBHelper;
@@ -53,9 +51,13 @@ public class YourWordsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        ListView yourwordsList =  (ListView) view.findViewById(R.id.yourwordsList);
+
+
+        ListView yourwordsList =  view.findViewById(R.id.yourwordsList);
         adapter = new YourWordsAdapter(getActivity(),mDBHelper.getAllWordsFromSavewords());
+
         yourwordsList.setAdapter(adapter);
+
 
         adapter.setOnItemClick(new ListItemListener() {
             @Override
@@ -74,6 +76,7 @@ public class YourWordsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+
     }
 
     @Override
@@ -89,9 +92,6 @@ public class YourWordsFragment extends Fragment {
     public void setOnFragmentListener(FragmentListener listener){
         this.listener = listener;
     }
-
-
-
 
 
 

@@ -42,5 +42,9 @@
     <string name="mssv_phuong">MSSV: 17520927</string>
     <string name="gmail_phuong">Gmail: 17520927@gm.uit.edu.vn</string>
 
+    <string name="yourword">Your words</string>
+    <string name="help">Help</string>
+    <string name="about">About us</string>
+    <string name="contribution">Contribution</string>
 
 </resources>

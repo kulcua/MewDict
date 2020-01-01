@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
 import java.util.TooManyListenersException;
 
 
@@ -33,8 +35,7 @@ public class DetailFragment extends Fragment {
     private WebView tvWordTranslate;
     private DBHelper mDBHelper;
     private int mDicType;
-
-    TextToSpeech mTTS;
+    private TextToSpeech mTTS;
 
     public DetailFragment() {
 
@@ -51,6 +52,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -100,14 +102,42 @@ public class DetailFragment extends Fragment {
             }
         });
 
-//        btnVolume.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String toSpeak = words.key;
-//                mTTS.speak(toSpeak,TextToSpeech.QUEUE_FLUSH,null,null);
-//
-//            }
-//    });
+
+        mTTS = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(Locale.UK);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                    {
+                        Log.e("TSS", "Language not supported");
+                    } else {
+                        btnVolume.setEnabled(true);
+                    }
+                } else
+                {
+                    Log.e("TTS","Init failed");
+                }
+
+            }
+        });
+        btnVolume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = tvWord.getText().toString();
+                mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mTTS !=null)
+        {
+            mTTS.stop();
+            mTTS.shutdown();
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -125,15 +155,6 @@ public class DetailFragment extends Fragment {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
-
-    //@Override
-//    public void onPause() {
-//        if(mTTS!=null||mTTS.isSpeaking())
-//        {
-//            mTTS.stop();
-//        }
-//        super.onPause();
-//    }
 
   @Override
    public void onStop() {
