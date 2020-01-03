@@ -66,10 +66,10 @@ public class DetailFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tvWord = (TextView) view.findViewById(R.id.tvWord);
-        tvWordTranslate = (WebView) view.findViewById(R.id.tvWordTranslate);
-        btnBookmark = (ImageButton) view.findViewById(R.id.btnBookmark);
-        btnVolume = (ImageButton) view.findViewById(R.id.btnVolume);
+        tvWord = view.findViewById(R.id.tvWord);
+        tvWordTranslate = view.findViewById(R.id.tvWordTranslate);
+        btnBookmark = view.findViewById(R.id.btnBookmark);
+        btnVolume = view.findViewById(R.id.btnVolume);
 
 
         final Words words = mDBHelper.getWords(value,mDicType);

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,13 +25,11 @@ public class DBHelper  extends SQLiteOpenHelper {
 
     private final String TBL_EN_VI = "en_vi";
     private final String TBL_VI_EN = "vi_en";
-   // private final String TBL_SAVEWORD = "saveword";
 
     private final String COL_KEY = "key";
     private final String COL_VALUE = "value";
     private final String COL_HTML = "html";
-    private final String COL_PRONOUNCE = "pronounce";
-   // private final String COL_ID= "id";
+    private final String COL_PRONOUNCE = "pronounce";;
 
     public SQLiteDatabase mDB;
 

@@ -1,19 +1,11 @@
 package com.example.doandd;
 
-
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -45,9 +37,4 @@ public class HelpFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    //    @Override
-//    public void onResume() {
-//        super.onResume();
-//        ((MainActivity)getActivity()).onPrepareOptionsMenu(menu);
-//    }
 }

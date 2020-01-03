@@ -1,47 +1,22 @@
 package com.example.doandd;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
-
-import android.os.Handler;
-import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
-
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.fragment.app.FragmentTransaction;;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
@@ -56,9 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     HelpFragment helpFragment;
     ContributionFragment contributionFragment;
     AboutUsFragment aboutUsFragment;
-//    private TextToSpeech mTTS;
-//    private ImageButton mBtnVol;
-//    private TextView mTvWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         dictFragment = new DictionaryFragment();
@@ -124,20 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-
-//    private void speak()
-//    {
-//        String text = mTvWord.getText().toString();
-////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            mTTS.speak(text,TextToSpeech.QUEUE_FLUSH,null,null);
-////        } else {
-////            mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-////        }
-//    }
-
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if(drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
@@ -158,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else {
             ArrayList<String> source = dbHelper.getWord(R.id.action_en_vi);
             dictFragment.resetDataSource(source);
-            //DB.getData(R.id.action_en_vi);
         }
         return true;
 
@@ -173,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             Global.saveState(this,"dic_type",String.valueOf(id));
             ArrayList<String> source =dbHelper.getWord(id);
-           // mTTS.setLanguage(Locale.ENGLISH);
             dictFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.uk64));
             return true;
@@ -182,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             Global.saveState(this,"dic_type",String.valueOf(id));
             ArrayList<String> source =dbHelper.getWord(id);
-            //mTTS.setLanguage(Locale.TRADITIONAL_CHINESE);
             dictFragment.resetDataSource(source);
             menuSetting.setIcon(getDrawable(R.drawable.vn64));
             return true;
@@ -197,8 +155,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.action_save){
             if(!activeFragment.equals(YourWordsFragment.class.getSimpleName()))
             {
-//                ProgressBar pb = findViewById(R.id.progressBar);
-//                pb.setVisibility(ProgressBar.VISIBLE);
                 goToFragment(yourwordsFragment,false);
             }
         }
@@ -221,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -272,8 +228,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-
-
-
-
 }
